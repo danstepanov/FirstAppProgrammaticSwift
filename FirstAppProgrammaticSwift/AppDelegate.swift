@@ -15,7 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // Initialize the window
+        window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
+        
+        // Allocate memory for an instance of the 'MainViewController' class
+        let mainViewController = MainViewController()
+        
+        // Set the root view controller of the app's window
+        window!.rootViewController = mainViewController
+        
+        // Make the window visible
+        window!.makeKeyAndVisible()
+        
         return true
     }
 
