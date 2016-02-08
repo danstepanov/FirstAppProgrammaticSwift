@@ -145,6 +145,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         let view = UITextField()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.borderStyle = .RoundedRect
+        view.textAlignment = .Center
         
         return view
     }()
