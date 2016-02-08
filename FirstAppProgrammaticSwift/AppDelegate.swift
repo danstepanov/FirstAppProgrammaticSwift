@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize the window
         window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
         
+        // Set Background Color of window
+        window?.backgroundColor = UIColor.whiteColor()
+        
         // Allocate memory for an instance of the 'MainViewController' class
         let mainViewController = MainViewController()
         

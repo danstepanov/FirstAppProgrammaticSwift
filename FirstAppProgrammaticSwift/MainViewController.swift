@@ -12,8 +12,11 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         textField.delegate = self
+        
         view.addSubview(textField)
+        view.addSubview(button)
         view.setNeedsUpdateConstraints()
     }
     
@@ -29,11 +32,12 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func updateViewConstraints() {
-        textFieldConstraint()
+        textFieldConstraints()
+        buttonConstraints()
         super.updateViewConstraints()
     }
     
-    func textFieldConstraint() {
+    func textFieldConstraints() {
         NSLayoutConstraint(
             item: textField,
             attribute: .CenterX,
@@ -64,11 +68,57 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             constant: 0.0)
             .active = true
     }
+    
+    func buttonConstraints() {
+        // Center button in Page View
+        NSLayoutConstraint(
+            item: button,
+            attribute: .CenterX,
+            relatedBy: .Equal,
+            toItem: view,
+            attribute: .CenterX,
+            multiplier: 1.0,
+            constant: 0.0)
+            .active = true
+        
+        // Set Width to be 30% of the Page View Width
+        NSLayoutConstraint(
+            item: button,
+            attribute: .Width,
+            relatedBy: .Equal,
+            toItem: view,
+            attribute: .Width,
+            multiplier: 0.3,
+            constant: 0.0)
+            .active = true
+        
+        // Set Y Position Relative to Bottom of Page View
+        NSLayoutConstraint(
+            item: button,
+            attribute: .Bottom,
+            relatedBy: .Equal,
+            toItem: view,
+            attribute: .Bottom,
+            multiplier: 0.9,
+            constant: 0.0)
+            .active = true
+    }
 
     lazy var textField: UITextField! = {
         let view = UITextField()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.borderStyle = .RoundedRect
+        
+        return view
+    }()
+    
+    lazy var button: UIButton! = {
+        let view = UIButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.addTarget(self, action: "buttonPressed", forControlEvents: .TouchDown)
+        view.setTitle("Press Me!", forState: .Normal)
+        view.backgroundColor = UIColor.blueColor()
+        
         return view
     }()
 
