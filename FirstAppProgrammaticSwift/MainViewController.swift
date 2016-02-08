@@ -17,6 +17,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
         view.addSubview(textField)
         view.addSubview(button)
+        view.addSubview(label)
         view.setNeedsUpdateConstraints()
     }
     
@@ -34,6 +35,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     override func updateViewConstraints() {
         textFieldConstraints()
         buttonConstraints()
+        labelConstraints()
         super.updateViewConstraints()
     }
     
@@ -103,6 +105,41 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             constant: 0.0)
             .active = true
     }
+    
+    func labelConstraints() {
+        // Center button in Page View
+        NSLayoutConstraint(
+            item: label,
+            attribute: .CenterX,
+            relatedBy: .Equal,
+            toItem: view,
+            attribute: .CenterX,
+            multiplier: 1.0,
+            constant: 0.0)
+            .active = true
+        
+        // Set Width to be 80% of the Page View Width
+        NSLayoutConstraint(
+            item: label,
+            attribute: .Width,
+            relatedBy: .Equal,
+            toItem: view,
+            attribute: .Width,
+            multiplier: 0.8,
+            constant: 0.0)
+            .active = true
+        
+        // Set Y Position Relative to Bottom of Page View
+        NSLayoutConstraint(
+            item: label,
+            attribute: .CenterY,
+            relatedBy: .Equal,
+            toItem: view,
+            attribute: .CenterY,
+            multiplier: 1.0,
+            constant: 0.0)
+            .active = true
+    }
 
     lazy var textField: UITextField! = {
         let view = UITextField()
@@ -118,6 +155,15 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         view.addTarget(self, action: "buttonPressed", forControlEvents: .TouchDown)
         view.setTitle("Press Me!", forState: .Normal)
         view.backgroundColor = UIColor.blueColor()
+        
+        return view
+    }()
+    
+    lazy var label: UILabel! = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.text = "Hello World!"
+        view.textAlignment = .Center
         
         return view
     }()
