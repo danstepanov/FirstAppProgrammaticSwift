@@ -9,7 +9,8 @@
 import UIKit
 
 class MainViewController: UIViewController, UITextFieldDelegate {
-
+    
+    // MARK: - UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,17 +22,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         view.setNeedsUpdateConstraints()
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        // Dismisses the Keyboard by making the text field resign
-        // first responder
-        textField.resignFirstResponder()
-        
-        // returns false. Instead of adding a line break, the text
-        // field resigns
-        return false
-    }
-    
+    // MARK: - Layout Constraints
     override func updateViewConstraints() {
         textFieldConstraints()
         buttonConstraints()
@@ -141,10 +132,13 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             .active = true
     }
     
+    
+    // MARK: - UI Actions
     func buttonPressed() {
         label.text = textField.text
     }
-
+    
+    // MARK: - Lazy Instantiation
     lazy var textField: UITextField! = {
         let view = UITextField()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -171,5 +165,16 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
         return view
     }()
-
+    
+    // MARK: - UITextField Delegate Methods
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        // Dismisses the Keyboard by making the text field resign
+        // first responder
+        textField.resignFirstResponder()
+        
+        // returns false. Instead of adding a line break, the text
+        // field resigns
+        return false
+    }
 }
