@@ -135,7 +135,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - UI Actions
     func buttonPressed() {
-        label.text = textField.text
+        label.text = "Hello, \(textField.text!)"
     }
     
     // MARK: - Lazy Instantiation
