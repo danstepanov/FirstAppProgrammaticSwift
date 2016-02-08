@@ -135,6 +135,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - UI Actions
     func buttonPressed() {
+        // Print Hello followed by the user inputed string
+        // The exclamation point is added to unwrap the optional
         label.text = "Hello, \(textField.text!)"
     }
     
