@@ -140,6 +140,10 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             constant: 0.0)
             .active = true
     }
+    
+    func buttonPressed() {
+        label.text = textField.text
+    }
 
     lazy var textField: UITextField! = {
         let view = UITextField()
